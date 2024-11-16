@@ -3,17 +3,24 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon index.js"
+		"start": "concurrently \"npm run server\" \"npm run client\"",
+		"server": "node index.js",
+		"client": "npm run client:start --prefix ../client",
+		"client:start": "wait-on http://localhost:3000 && open http://localhost:3000/login"
 	},
 	"author": "",
 	"license": "ISC",
 	"description": "",
 	"dependencies": {
+		"bcrypt": "^5.1.1",
+		"concurrently": "^7.0.0",
 		"cors": "^2.8.5",
 		"express": "^4.21.1",
+		"jsonwebtoken": "^9.0.2",
 		"mysql2": "^3.11.4",
 		"sequelize": "^6.37.5",
-		"sequelize-cli": "^6.6.2"
+		"sequelize-cli": "^6.6.2",
+		"server": "file:",
+		"wait-on": "^6.0.0"
 	}
 }
