@@ -47,7 +47,7 @@ function MainPage() {
 			) : (
 				<div>
 					<h1>Welcome to the Shopping Site</h1>
-					<p>Please log in to continue.</p>
+					<p>Please log in to continue!.</p>
 				</div>
 			)}
 			<LoginDialog
