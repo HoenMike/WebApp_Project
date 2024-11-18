@@ -42,7 +42,7 @@ function MainPage() {
 			{isAuthenticated ? (
 				<div>
 					<h1>Welcome to the Shopping Site</h1>
-					<p>You are logged in as {username}!</p> {/* Include username in the welcome message */}
+					<p>You are logged in as 123123 {username}!</p> {/* Include username in the welcome message */}
 				</div>
 			) : (
 				<div>
