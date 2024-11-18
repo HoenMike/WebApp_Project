@@ -1,20 +1,37 @@
 import { AppBar, Button, Toolbar, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoginDialog from "./LoginDialog";
 
 function MainPage() {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [loginDialogOpen, setLoginDialogOpen] = useState(false);
+	const [username, setUsername] = useState("");
+
+	useEffect(() => {
+		const storedUsername = localStorage.getItem("username");
+		const storedToken = localStorage.getItem("token");
+		if (storedUsername && storedToken) {
+			setIsAuthenticated(true);
+			setUsername(storedUsername);
+		}
+	}, []);
 
 	const handleLogin = (username, password) => {
 		// Implement login logic here, e.g., call the login API
-		// If successful, set isAuthenticated to true
+		// If successful, set isAuthenticated to true and set the username
+		const token = "dummyToken"; // Replace with actual token from API response
+		localStorage.setItem("username", username);
+		localStorage.setItem("token", token);
 		setIsAuthenticated(true);
+		setUsername(username);
 	};
 
 	const handleLogout = () => {
 		// Implement logout logic here, e.g., clear tokens
+		localStorage.removeItem("username");
+		localStorage.removeItem("token");
 		setIsAuthenticated(false);
+		setUsername("");
 	};
 
 	return (
@@ -38,7 +55,7 @@ function MainPage() {
 			{isAuthenticated ? (
 				<div>
 					<h1>Welcome to the Shopping Site</h1>
-					<p>You are logged in!</p>
+					<p>You are logged in as {username}!</p> {/* Include username in the welcome message */}
 				</div>
 			) : (
 				<div>
