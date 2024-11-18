@@ -42,13 +42,12 @@ function MainPage() {
 			{isAuthenticated ? (
 				<div>
 					<h1>Welcome to the Shopping Site</h1>
-					<p>You are logged in as IDEA {username}!</p> test new
-					{/* Include username in the welcome message */}
+					<p>You are logged in as {username}!</p>
 				</div>
 			) : (
 				<div>
 					<h1>Welcome to the Shopping Site</h1>
-					<p>Please log in to continue!.</p>
+					<p>Please log in to continue.</p>
 				</div>
 			)}
 			<LoginDialog
