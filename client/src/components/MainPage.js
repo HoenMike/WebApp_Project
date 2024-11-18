@@ -1,6 +1,6 @@
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import LoginDialog from "./LoginDialog";
+import NavBar from "./NavBar";
 
 function MainPage() {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,9 +17,7 @@ function MainPage() {
 	}, []);
 
 	const handleLogin = (username, password) => {
-		// Implement login logic here, e.g., call the login API
-		// If successful, set isAuthenticated to true and set the username
-		const token = "dummyToken"; // Replace with actual token from API response
+		const token = "dummyToken";
 		localStorage.setItem("username", username);
 		localStorage.setItem("token", token);
 		setIsAuthenticated(true);
@@ -36,22 +34,11 @@ function MainPage() {
 
 	return (
 		<div>
-			<AppBar position="static">
-				<Toolbar>
-					<Typography variant="h6" style={{ flexGrow: 1 }}>
-						Shopping Site
-					</Typography>
-					{isAuthenticated ? (
-						<Button color="inherit" onClick={handleLogout}>
-							Sign Out
-						</Button>
-					) : (
-						<Button color="inherit" onClick={() => setLoginDialogOpen(true)}>
-							Login
-						</Button>
-					)}
-				</Toolbar>
-			</AppBar>
+			<NavBar
+				isAuthenticated={isAuthenticated}
+				handleLogout={handleLogout}
+				handleLoginDialogOpen={() => setLoginDialogOpen(true)}
+			/>
 			{isAuthenticated ? (
 				<div>
 					<h1>Welcome to the Shopping Site</h1>
